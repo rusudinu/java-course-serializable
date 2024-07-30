@@ -18,8 +18,9 @@ jobs:
           distribution: 'temurin'
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Primitives test
-        id: primitives-test
+
+      - name: BinaryFileOperationsTest
+        id: binary-file-operations-test
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Binary File Operations Test
@@ -27,28 +28,31 @@ jobs:
           command: mvn test -Dtest=BinaryFileOperationsTest
           timeout: 10
           max-score: 40
-      - name: Classes test
-        id: classes-test
+
+      - name: SerializationUtilsTest
+        id: serialization-utils-test
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Serialization Utils Test
+          test-name: SerializationUtilsTest
           setup-command: ''
           command: mvn test -Dtest=SerializationUtilsTest
           timeout: 10
           max-score: 30
-      - name: Classes test
-        id: classes-test
+
+      - name: TextFileOperationsTest
+        id: text-file-operations-test
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Text File Operations Test
+          test-name: TextFileOperationsTest
           setup-command: ''
           command: mvn test -Dtest=TextFileOperationsTest
           timeout: 10
           max-score: 30
+
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
           PRIMITIVES-TEST_RESULTS: "${{steps.primitives-test.outputs.result}}"
           CLASSES-TEST_RESULTS: "${{steps.classes-test.outputs.result}}"
         with:
-          runners: primitives-test,classes-test
+          runners: binary-file-operations-test,serialization-utils-test,text-file-operations-test
