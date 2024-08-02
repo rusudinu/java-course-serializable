@@ -52,7 +52,8 @@ jobs:
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          PRIMITIVES-TEST_RESULTS: "${{steps.primitives-test.outputs.result}}"
-          CLASSES-TEST_RESULTS: "${{steps.classes-test.outputs.result}}"
+          BINARY-FILE-OPERATIONS-TEST_RESULTS: "${{steps.binary-file-operations-test.outputs.result}}"
+          SERIALIZATION-UTILS-TEST_RESULTS: "${{steps.serialization-utils-test.outputs.result}}"
+          TEXT-FILE-OPERATIONS-TEST_RESULTS: "${{steps.text-file-operations-test.outputs.result}}"
         with:
-          runners: "binary-file-operations-test,serialization-utils-test,text-file-operations-test"
+          runners: binary-file-operations-test,serialization-utils-test,text-file-operations-test
